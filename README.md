@@ -12,11 +12,6 @@ cd nodebb-docker-dev
 git clone -b v1.x.x https://github.com/NodeBB/NodeBB.git nodebb
 ./bin/com-nodebb npm install
 ./bin/docker-compose up -d 
-./bin/com-nodebb ./nodebb setup  
-  # URL used to access this NodeBB  => ex) http://example.com ( DON'T ADD 4567 )
-  # Which database to use (mongo)   => redis
-  # Just use default vaules for other ( means just enter ), except Administartor user information ( use your own ).
-./bin/docker-compose up -d 
 ```
 * Now visit your url with a web brower
   * A type of Database : redis
@@ -30,6 +25,47 @@ git clone -b v1.x.x https://github.com/NodeBB/NodeBB.git nodebb
 ./bin/com-nodebb npm install <package>
 ```
 * You **DONOT** `npm <install|update|whatever>` on a host directory( `nodebb-docker-dev/nodebb` ) out of a docker container.
-* But editings is fine
+* But editings are fine
+
+## Structure
+```
+nodebb-docker-dev
+├── bin   
+│   ├── com-nodebb      # Helper to control NodeBB docker
+│   └── docker-compose  # Docker version of docker-compose for portable
+├── conf                # All Dockerfile and configuration.
+│   ├── nginx
+│   │   ├── Dockerfile
+│   │   └── nginx.conf
+│   ├── nodebb-dev
+│   │   └── Dockerfile
+│   └── redis
+│       ├── Dockerfile
+│       └── redis.conf
+├── data
+│   ├── nginx
+│   │   └── logs         # nginx, site logs
+│   ├── nodebb           # Empty. reserved for future plans.
+│   └── redis            # dump.rgb ( db data ) , redis.log ( log file ) 
+├── docker-compose.yml
+└── nodebb               # NodeBB source will be here 
+```
+* All configuration, data( log file ), NodeBB codes are mounted to dockers ( not copied ). So you can just edit them on a host directory.
+* All configurations are in a `conf` directory. All data files genereated by nginx, redis are in a `data` directory.
+  * Exceptionally `config.json` and a logfile of NodeBB are in nodebb directory for easy management.
+* This desigin is aimed to archive best development/management of small standalone service. 
+  * Every improtant files are just under a main directory on a host and dockers are just like applications, 
+  * so you can remove/rebuild docker containers/images freely without any effect to data.
+  * Also you can easily migrate this chain to new server. What you need is just copy the main directory to new server and rebuild dockers.
+  * But large distributing/scaling can meet some side effects. 
+
+## Project Name
+When you build a system by `./bin/docker-compose up`, you will see a wired long name of images/container like `nodebbdockerdev_nginx` by `docker images` or `docker ps -a`. This is because `docker-compose` use a directory name as a project nam.
+To get a short/readable name , you have recommontable 2 options.
+  1. Change the directory name
+  2. Shell variables ( **RECOMMENDED** but easilly one can make mistakes. [smartcd](https://github.com/cxreg/smartcd) can help )
+     * `export COMPOSE_PROJECT_NAME=qgp9`
+     * or you can embed this variable to `./bin/com-nodebb` and `./bin/docker-compose`
+Then you will see `qgp9_nginx`.
 
 ## Details will be .. later

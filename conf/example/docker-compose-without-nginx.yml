@@ -1,0 +1,17 @@
+version: '2'
+services:
+  nodebb: 
+    build: conf/nodebb-dev
+    ports:
+     - "4567:4567"
+    volumes:
+     - ./nodebb:/opt/nodebb
+    links:
+     - redis
+  redis:
+    build: conf/redis
+    expose:
+      - "6379"
+    volumes:
+      - ./conf/redis/redis.conf:/etc/redis.conf
+      - ./data/redis:/data
