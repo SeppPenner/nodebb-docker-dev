@@ -16,7 +16,7 @@ git clone -b v1.x.x https://github.com/NodeBB/NodeBB.git nodebb
 * Now visit your url with a web browser
   * A type of Database : redis
   * Host IP or address of your Redis instance : redis
-  * ![configuration screen shot](http://i.imgur.com/Pd2TLTH.png)
+  * ![configuration screen shot](http://i.imgur.com/sNyWa2O.jpg)
 
 # Command line Settings, Upgrade, npm  and so on
 ```
@@ -27,4 +27,27 @@ git clone -b v1.x.x https://github.com/NodeBB/NodeBB.git nodebb
 * You **DONOT** `npm <install|update|whatever>` on a host directory( `nodebb-docker-dev/nodebb` ) out of a docker container.
 * But editings are fine
 
+## Structure
+```
+nodebb-docker-dev
+├── bin
+│   ├── com-nodebb
+│   └── docker-compose
+├── conf
+│   ├── nginx
+│   │   ├── Dockerfile
+│   │   └── nginx.conf
+│   ├── nodebb-dev
+│   │   └── Dockerfile
+│   └── redis
+│       ├── Dockerfile
+│       └── redis.conf
+├── data
+│   ├── nginx
+│   │   └── logs
+│   ├── nodebb
+│   └── redis
+├── docker-compose.yml
+└── nodebb
+```
 ## Details will be .. later
