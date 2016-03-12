@@ -25,6 +25,6 @@ git clone -b v1.x.x https://github.com/NodeBB/NodeBB.git nodebb
 ./bin/com-nodebb npm install <package>
 ```
 * You **DONOT** `npm <install|update|whatever>` on a host directory( `nodebb-docker-dev/nodebb` ) out of a docker container.
-* But editings is fine
+* But editings are fine
 
 ## Details will be .. later
