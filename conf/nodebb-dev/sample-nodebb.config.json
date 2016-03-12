@@ -1,0 +1,12 @@
+{
+    "url": "http://example.com",
+    "port": "4567",
+    "secret": "thisissomesecret"
+    "database": "redis",
+    "redis": {
+        "host": "redis",
+        "port": "6379",
+        "password": "",
+        "database": "0"
+    }
+}
