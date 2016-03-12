@@ -1,0 +1,31 @@
+version: '2'
+services:
+  nodebb: 
+    build: conf/nodebb-dev
+    expose:
+     - "4567"
+    volumes:
+     - ./nodebb:/opt/nodebb
+    links:
+     - redis
+  redis:
+    build: conf/redis
+    expose:
+      - "6379"
+    volumes:
+      - ./conf/redis/redis.conf:/etc/redis.conf
+      - ./data/redis:/data
+  nginx:
+    build: conf/nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./data/nginx:/data
+      - ./nodebb:/opt/nodebb
+      - ./conf/nginx/nginx-conf:/etc/nginx
+      - ./data/nginx/logs:/var/log/nginx
+      - ./data/www:/var/www
+      - ./data/letsencrypt:/etc/letsencrypt
+    links:
+      - nodebb
