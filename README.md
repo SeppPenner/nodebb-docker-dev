@@ -16,7 +16,7 @@ git clone -b v1.x.x https://github.com/NodeBB/NodeBB.git nodebb
   # URL used to access this NodeBB  => ex) http://example.com ( DON'T ADD 4567 )
   # Which database to use (mongo)   => redis
   # Just use default vaules for other ( means just enter ), except Administartor user information ( use your own ).
-./bin/docker-compose up -d 
+./bin/docker-compose up
 ```
 * Now visit your url with a web brower
   * A type of Database : redis
