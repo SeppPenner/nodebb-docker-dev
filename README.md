@@ -18,7 +18,7 @@ git clone -b v1.x.x https://github.com/NodeBB/NodeBB.git nodebb
   # Just use default vaules for other ( means just enter ), except Administartor user information ( use your own ).
 ./bin/docker-compose up
 ```
-* Now visit your url with a web brower
+* Now visit your url with a web browser
   * A type of Database : redis
   * Host IP or address of your Redis instance : redis
   * ![configuration screen shot](http://i.imgur.com/Pd2TLTH.png)
