@@ -1,11 +1,15 @@
 FROM alpine
 MAINTAINER qgp9 
 
-# Install nginx 
+# BASE SET
 RUN apk update && apk upgrade && apk update
-RUN apk add --update nginx bash && \
-    rm -rf /var/cache/apk/*  
+RUN apk add --update bash && rm -rf /var/cache/apk/*  
 
-# Expose the ports for redis
+# ADDITIONAL SET
+
+# NGINX
+RUN apk add --update nginx && rm -rf /var/cache/apk/*  
+ 
 EXPOSE 80
+
 CMD ["nginx", "-g", "daemon off;"]

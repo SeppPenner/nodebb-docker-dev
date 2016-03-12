@@ -8,7 +8,6 @@ services:
      - ./nodebb:/opt/nodebb
     links:
      - redis
-    env_file: ./env
   redis:
     build: conf/redis
     expose:

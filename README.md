@@ -18,4 +18,18 @@ git clone -b v1.x.x https://github.com/NodeBB/NodeBB.git nodebb
   # Just use default vaules for other ( means just enter ), except Administartor user information ( use your own ).
 ./bin/docker-compose up -d 
 ```
+* Now visit your url with a web brower
+  * A type of Database : redis
+  * Host IP or address of your Redis instance : redis
+  * ![configuration screen shot](http://i.imgur.com/Pd2TLTH.png)
 
+# Command line Settings, Upgrade, npm  and so on
+```
+./bin/com-nodebb ./nodebb setup
+./bin/com-nodebb ./nodebb upgrade
+./bin/com-nodebb npm install <package>
+```
+* You **DONOT** `npm <install|update|whatever>` on a host directory( `nodebb-docker-dev/nodebb` ) out of a docker container.
+* But editings is fine
+
+## Details will be .. later

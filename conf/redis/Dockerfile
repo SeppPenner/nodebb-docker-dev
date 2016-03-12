@@ -1,15 +1,19 @@
 FROM alpine
 MAINTAINER qgp9 
 
-# Install redis
+# BASE SET
 RUN apk update && apk upgrade && apk update
-RUN apk add --update redis bash && \
-    rm -rf /var/cache/apk/*  
-#RUN echo -e 'vm.overcommit_memory = 1' >> /etc/sysctl.conf
+RUN apk add --update bash && rm -rf /var/cache/apk/*  
+
+# ADDITIONAL SET
+
+# REDIS
+RUN apk add --update redis && rm -rf /var/cache/apk/*  
 
 RUN mkdir /data
+
 WORKDIR /data
 
-# Expose the ports for redis
 EXPOSE 6379
+
 CMD ["redis-server", "/etc/redis.conf"]
