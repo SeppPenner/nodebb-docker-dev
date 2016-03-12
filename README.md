@@ -11,12 +11,12 @@ git clone https://github.com/qgp9/nodebb-docker-dev.git nodebb-docker-dev
 cd nodebb-docker-dev
 git clone -b v1.x.x https://github.com/NodeBB/NodeBB.git nodebb
 ./bin/com-nodebb npm install
-./bin/docker-compose up -d 
+./bin/docker-compose up 
 ```
-* Now visit your url with a web brower
+* Now visit your url with a web browser
   * A type of Database : redis
   * Host IP or address of your Redis instance : redis
-  * ![configuration screen shot](http://i.imgur.com/Pd2TLTH.png)
+  * ![configuration screen shot](http://i.imgur.com/sNyWa2O.jpg)
 
 # Command line Settings, Upgrade, npm  and so on
 ```
