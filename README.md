@@ -13,12 +13,10 @@ git clone -b v1.x.x https://github.com/NodeBB/NodeBB.git nodebb
 ./bin/com-nodebb npm install
 ./bin/com-nodebb npm install socket.io-redis connect
 ./bin/com-nodebb npm setup
+./bin/utils jq -M -s add nodebb/config.json conf/example/redis.josn > tmp.json && mv tmp.json nodebb/config.json
 ./bin/docker-compose up 
 ```
 * DB: `mongo` , DB address: `mongodb` , DB user: `admin` , no DB password
-* After `./bin/com-nodebb npm setup`, you need to append a redis part ( `conf/example/nodebb.config.redis-part.json` ) to `nodebb/config.json` 
-  * Be carefull with a comma before `redis:`
-  * final file should be simillar with `conf/example/nodebb.config.json`
 
 # Command line Settings, Upgrade, npm  and so on
 ```

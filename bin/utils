@@ -1,0 +1,40 @@
+#!/bin/bash
+CMD=${1:-"/bin/bash"} && shift
+IMAGENAME=qgp9_utils
+
+## Orignal script file if this is symbolic link
+oScript=$( echo $BASH_SOURC | perl -MCwd+abs_path -nlE'$_=abs_path$n while $n=readlink $_;say abs_path $_' )
+## Get Date of qgp9_utils images
+imageDateForm=$(docker inspect -f '{{.Created}}' $IMAGENAME)
+export imageDate=$( test -n "$imageDateForm" && date -d "$imageDateForm" +%s )
+export scriptDate=$(date -r "$oScript" +%s);
+if perl -e'$i=$ENV{imageDate}||0;$f=$ENV{scriptDate}||0;exit ($i<$f?0:1)' ;then
+  TMPDIR=$(mktemp -d);
+
+  cat > $TMPDIR/Dockerfile << EOFF
+  FROM alpine
+  MAINTAINER qgp9 
+
+  # BASE SET
+  RUN apk update && apk upgrade && apk update
+  RUN apk add --update bash && rm -rf /var/cache/apk/*  
+
+  # ADDITIONAL SET
+
+  # UTILS
+  RUN apk add --update jq perl && rm -rf /var/cache/apk/*  
+
+  RUN mkdir /data
+  WORKDIR /data
+  RUN touch created-${scriptDate}.log
+
+
+  CMD ["/bin/bash"]
+EOFF
+
+echo "(RE)BUILD a Docker image : $IMAGENAME"
+  docker build -t qgp9_utils $TMPDIR  2>&1 > $TMPDIR/build.log || cat $TMPDIR/build.log
+
+fi
+
+docker run -it --rm -v $PWD:/data $IMAGENAME $CMD $@
