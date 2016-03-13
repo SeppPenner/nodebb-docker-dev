@@ -1,6 +1,6 @@
 # nodebb-docker-dev
 
-A docker chain of Nginx, NodeBB, Redis based on [Alpine Linux](http://www.alpinelinux.org) for mainly developments and small standalone service. 
+A docker chain of Nginx, NodeBB, MongoDB, Redis based on [Alpine Linux](http://www.alpinelinux.org) for mainly developments and small standalone service. 
 
 ## Introduction
 
@@ -11,12 +11,14 @@ git clone https://github.com/qgp9/nodebb-docker-dev.git nodebb-docker-dev
 cd nodebb-docker-dev
 git clone -b v1.x.x https://github.com/NodeBB/NodeBB.git nodebb
 ./bin/com-nodebb npm install
+./bin/com-nodebb npm install socket.io-redis connect
+./bin/com-nodebb npm setup
 ./bin/docker-compose up 
 ```
-* Now visit your url with a web browser
-  * A type of Database : redis
-  * Host IP or address of your Redis instance : redis
-  * ![configuration screen shot](http://i.imgur.com/sNyWa2O.jpg)
+* DB: `mongo` , DB address: `mongodb` , DB user: `admin` , no DB password
+* After `./bin/com-nodebb npm setup`, you need to append a redis part ( `conf/example/nodebb.config.redis-part.json` ) to `nodebb/config.json` 
+  * Be carefull with a comma before `redis:`
+  * final file should be simillar with `conf/example/nodebb.config.json`
 
 # Command line Settings, Upgrade, npm  and so on
 ```

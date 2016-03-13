@@ -10,6 +10,7 @@ RUN apk add --update imagemagick git curl  && rm -rf /var/cache/apk/*
 
 # NODEJS
 RUN apk add --update nodejs && rm -rf /var/cache/apk/*  
+#RUN apk add --update nodejs-dev alpine-sdk && rm -rf /var/cache/apk/*  
 
 # NODEBB
 #

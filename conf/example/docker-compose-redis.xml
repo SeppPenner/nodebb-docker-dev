@@ -8,7 +8,6 @@ services:
      - ./nodebb:/opt/nodebb
     links:
      - redis
-     - mongodb
   redis:
     build: conf/redis
     expose:
@@ -26,12 +25,5 @@ services:
       - ./nodebb:/opt/nodebb
     links:
       - nodebb
-  mongodb:
-    build: conf/mongodb
-    expose: 
-      - "27017"
-    volumes:
-      - ./data/mongodb:/data
-      - ./conf/mongodb/mongod.conf:/etc/mongod.conf
 
 
