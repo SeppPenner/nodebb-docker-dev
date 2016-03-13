@@ -2,7 +2,10 @@
 
 A docker chain of Nginx, NodeBB, MongoDB, Redis based on [Alpine Linux](http://www.alpinelinux.org) for mainly developments and small standalone service. 
 
-## Introduction
+## **!!! WARNING !!!**
+I haven't checked yet how `mongod` and `redis-server` manage `SIGTERM` which docker send.
+This means that in worst case one can loose data !
+Does any body know about this?
 
 ## TL;DR
 You will get error of a nginx docker if you already have any web server with 80 port.
