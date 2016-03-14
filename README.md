@@ -1,5 +1,3 @@
-[![Join the chat at https://gitter.im/Bash-it/bash-it](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/qgp9/nodebb-docker-dev?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 # nodebb-docker-dev
 
 [![Join the chat at https://gitter.im/qgp9/nodebb-docker-dev](https://badges.gitter.im/qgp9/nodebb-docker-dev.svg)](https://gitter.im/qgp9/nodebb-docker-dev?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
