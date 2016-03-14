@@ -33,7 +33,7 @@ if perl -e'$i=$ENV{imageDate}||0;$f=$ENV{scriptDate}||0;exit ($i<$f?0:1)' ;then
 EOFF
 
 echo "(RE)BUILD a Docker image : $IMAGENAME"
-  docker build -t qgp9_utils $TMPDIR  2>&1 > $TMPDIR/build.log || cat $TMPDIR/build.log
+  docker build -t $IMAGENAME $TMPDIR  2>&1 > $TMPDIR/build.log || cat $TMPDIR/build.log
 
 fi
 
